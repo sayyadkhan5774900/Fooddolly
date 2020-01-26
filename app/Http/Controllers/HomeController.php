@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('theme::home');
+        // $restaurants =  Restaurant::active()->get();
+        // return view('theme::home' , ['restuarants' => $restaurants]);
+
         return view('theme::home');
     }
 
