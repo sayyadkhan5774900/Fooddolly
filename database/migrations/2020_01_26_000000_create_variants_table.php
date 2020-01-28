@@ -15,6 +15,12 @@ class CreateVariantsTable extends Migration
     {
         Schema::create('variants', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->integer('product_id')->unsigned()->nullable()->default(null);
+          //  $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('set null');
+
+            $table->string('name');
+
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Cuisine;
 use Illuminate\Database\Seeder;
 
 class CuisineSeeder extends Seeder
@@ -11,6 +12,20 @@ class CuisineSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Cuisine::create([
+            'name'           => 'Chinees'
+        ]);
+
+
+        Cuisine::create([
+            'name'           => 'Fas Food'
+        ]);
+
+
+        Cuisine::create([
+            'name'           => 'Pakistani'
+        ]);
+
+
     }
 }
