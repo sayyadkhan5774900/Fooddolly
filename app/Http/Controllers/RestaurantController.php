@@ -2,84 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductCategory;
 use App\Restaurant;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
-    }
+        // $restaurants =  Restaurant::published()->paginate(6);
+       
+        $restaurants =  Restaurant::paginate(6);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        // $restaurant =  Restaurant::find(1);
+        // dd($restaurant->categories()->find(5)->categories());
+        
+        return view('theme::restaurant.index',['restaurants' => $restaurants]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Restaurant  $restaurant
+     * @param  \App\post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Restaurant $restaurant)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Restaurant $restaurant)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Restaurant $restaurant)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Restaurant $restaurant)
-    {
-        //
+        
+      //  $restaurant = Restaurant::findBySlug($slug);
+        
+        return view('theme::restaurant.show',['restaurant' => $restaurant]);
     }
 }

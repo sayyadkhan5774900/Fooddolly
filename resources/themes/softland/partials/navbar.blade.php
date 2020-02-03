@@ -21,7 +21,7 @@
 
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
               <li class="{{ active('home') }}"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-              <li class="{{ active('features') }}"><a href="{{ route('features') }}" class="nav-link">Features</a></li>
+              <li class="{{ active('restaurant.index') }}"><a href="{{ route('restaurant.index') }}" class="nav-link">Restarants</a></li>
               <li class="{{ active('pricing') }}"><a href="{{ route('pricing') }}" class="nav-link">Pricing</a></li>
 
               <li class="has-children {{ active('blog.*') }}">
@@ -31,7 +31,9 @@
                   {{-- <li><a href="{{ route('blog.show') }}" class="nav-link">Blog Sigle</a></li> --}}
                 </ul>
               </li>
-              <li class="{{ active('contact') }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+              {{-- <li class="{{ active('contact') }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+             --}}
+              <li class="{{ active('cart.*') }}"><a href="{{ route('cart.index') }}" class="nav-link">Cart</a></li>
 
               @guest
               <li class="{{ active('login') }}">

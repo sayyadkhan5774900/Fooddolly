@@ -176,6 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Watson\Active\ActiveServiceProvider::class,
+
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+
     ],
 
     /*
@@ -227,7 +230,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Active' => Watson\Active\Facades\Active::class
+        'Active' => Watson\Active\Facades\Active::class,
+
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+
 
     ],
 

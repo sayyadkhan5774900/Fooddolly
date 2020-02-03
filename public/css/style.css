@@ -373,7 +373,7 @@ figure figcaption {
 .sticky-wrapper.is-sticky .burger:before,
 .sticky-wrapper.is-sticky .burger span,
 .sticky-wrapper.is-sticky .burger:after {
-  background: #000000;
+  background: #ffffff;
   transition: .0s all ease;
 }
 

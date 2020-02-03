@@ -28,6 +28,8 @@
   <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
 
+  @yield('css')
+
   <!-- =======================================================
     Template Name: SoftLand
     Template URL: https://bootstrapmade.com/softland-bootstrap-app-landing-page-template/
@@ -91,7 +93,7 @@
       @yield('content')
 
 
-      @include('theme::partials.ctasection')
+      {{-- @include('theme::partials.ctasection') --}}
 
       @include('theme::partials.footer')
 
