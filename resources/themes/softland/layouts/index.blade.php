@@ -28,6 +28,8 @@
   <!-- Template Main CSS File -->
   <link href="/css/style.css" rel="stylesheet">
 
+  <link href="/css/submit.css" rel="stylesheet">
+
   @yield('css')
 
   <!-- =======================================================
@@ -115,6 +117,9 @@
 
   <!-- Template Main JS File -->
   <script src="/js/main.js"></script>
+  <script src="/js/submit.js"></script>
+
+  @yield('js')
 
 </body>
 

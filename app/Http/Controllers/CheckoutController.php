@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Darryldecode\Cart\Cart;
+use Exception;
 use Illuminate\Http\Request;
 
-class ShoppingCartController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +16,7 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-
-        // return \Cart::getContent();
-
-        return view('theme::cart.cart');
-
+        return view('theme::checkout');
     }
 
     /**
@@ -38,28 +35,43 @@ class ShoppingCartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request)
     {
 
-        if ($product->restaurant->slug !== session()->get('cartIntance')) {
 
-            session()->put('cartIntance',  $product->restaurant->slug);
+
+        try {
+            $charge = Stripe::charges()->create([
+                'amount' => \Cart::getTotal(),
+                'currency' => 'CAD',
+                'source' => $request->stripeToken,
+                'description' => 'Order',
+                'receipt_email' => $request->email,
+                'metadata' => [
+                    'quantity' => \Cart::getTotalQuantity(),
+                ],
+            ]);
+
             
-           \ Cart::clear();
+            \Cart::clear();
+
+            return redirect()->route('thankyou')->with('success', 'Thank you! Your payment has been successfully accepted!');
+            
+
+        } catch (Exception $e) {
+           
+            return back()->withError('Error!'.$e->getMessage());
+
         }
-        
-         \Cart::add($product->id, $product->name, $product->price, 1, array())->associate('App\Product');
-          
-        return back()->with(['success' => 'Item added Successfully']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
         //
     }
@@ -67,10 +79,10 @@ class ShoppingCartController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         //
     }
@@ -79,10 +91,10 @@ class ShoppingCartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,12 +102,11 @@ class ShoppingCartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($rowId)
+    public function destroy($id)
     {
-        \Cart::remove($rowId);
-        return back()->withSuccess('Item Deleted Successfully');
+        //
     }
 }

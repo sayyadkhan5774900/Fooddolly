@@ -42,9 +42,13 @@ class HomeController extends Controller
         return view('theme::contact');
     }
 
-    public function checkout()
+    public function thankyou()
     {
-        return view('theme::checkout');
+        if (! session()->has('success')) {
+            return redirect('/');
+        }
+
+        return view('theme::thankyou');
     }
   
     public function cart()

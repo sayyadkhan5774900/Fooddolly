@@ -33,7 +33,7 @@
               </li>
               {{-- <li class="{{ active('contact') }}"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
              --}}
-              <li class="{{ active('cart.*') }}"><a href="{{ route('cart.index') }}" class="nav-link">Cart</a></li>
+              <li class="{{ active('cart.*') }}"><a href="{{ route('cart.index') }}" class="nav-link">Cart <span class="badge badge-primary">{{ Cart::getTotalQuantity() }}</span></a></li>
 
               @guest
               <li class="{{ active('login') }}">

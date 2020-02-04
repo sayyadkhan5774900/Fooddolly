@@ -9,6 +9,10 @@
 <div class="site-section">
    <div class="container">
     <div class="row justify-content-center text-center">
+      <div class="h1">
+        <span class="text-muted">Your cart</span>
+        <span class="badge badge-secondary badge-pill">{{Cart::getTotalQuantity()}}</span>
+      </div>
       <table class="table table-bordered">
            <thead class="table-primary">
                <tr>
@@ -22,17 +26,16 @@
       
            <tbody>
       
-             <?php foreach(Cart::content() as $row) :?>
+             <?php foreach(Cart::getContent() as $row) :?>
       
                  <tr>
                      <td>
                          <p><strong><?php echo $row->name; ?></strong></p>
-                         <p><?php echo ($row->options->has('size') ? $row->options->size : ''); ?></p>
                      </td>
-                     <td><?php echo $row->qty; ?></td>
+                     <td><?php echo $row->quantity; ?></td>
                      <td>$<?php echo $row->price; ?></td>
                        <td>
-                          <form method="POST" action="{{ route('cart.destroy', $row->rowId) }}">
+                          <form method="POST" action="{{ route('cart.destroy', $row->id) }}">
                             @csrf
                             @method('delete')
                           <div class="input-group">
@@ -51,21 +54,24 @@
              <tr>
                <td colspan="2">&nbsp;</td>
                <td>Subtotal</td>
-               <td><?php echo Cart::subtotal(); ?></td>
+               <td><?php echo Cart::getSubTotal(); ?></td>
              </tr>
              <tr>
                <td colspan="2">&nbsp;</td>
                <td>Tax</td>
-               <td><?php echo Cart::tax(); ?></td>
              </tr>
              <tr>
                <td colspan="2">&nbsp;</td>
                <td>Total</td>
-               <td><?php echo Cart::total(); ?></td>
+               <td><?php echo Cart::getTotal(); ?></td>
              </tr>
            </tfoot>
       </table>
+      <a class="btn btn-primary" href="{{ route('checkout.index') }}" role="button">Proced Checkout</a>
     </div>
+
+
+
    </div>
 </div>
 

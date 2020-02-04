@@ -14,7 +14,7 @@
 use Illuminate\Http\Resources\Json\Resource;
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/checkout', 'HomeController@checkout')->name('checkout');
+Route::get('/thankyou', 'HomeController@thankyou')->name('thankyou');
 
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('/features', 'HomeController@features')->name('features');
@@ -37,6 +37,10 @@ Route::group(['prefix' => 'restaurant'], function () {
     Route::get('/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
 });
 
+Route::group(['prefix' => 'checkout'], function () {
+    Route::get('/', 'CheckoutController@index')->name('checkout.index');
+    Route::post('/', 'CheckoutController@store')->name('checkout.store');
+});
 
 
 Route::group(['prefix' => 'admin'], function () {

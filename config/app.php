@@ -176,8 +176,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Watson\Active\ActiveServiceProvider::class,
+        
+        Darryldecode\Cart\CartServiceProvider::class
 
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+
+        // Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
 
     ],
 
@@ -232,7 +235,9 @@ return [
 
         'Active' => Watson\Active\Facades\Active::class,
 
-        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        // 'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
 
     ],
