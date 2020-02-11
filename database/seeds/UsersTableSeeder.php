@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                 'name'           => 'Admin',
                 'email'          => 'admin@admin.com',
                 'password'       => bcrypt('password'),
+                'email_verified_at' => now(),
                 'remember_token' => Str::random(60),
                 'role_id'        => $role->id,
             ]);
@@ -34,6 +35,7 @@ class UsersTableSeeder extends Seeder
             'email'          => 'restaurateur@restaurateur.com',
             'password'       => bcrypt('password'),
             'remember_token' => Str::random(60),
+            'email_verified_at' => now(),
             'role_id'        => $role->id,
         ]);
     }

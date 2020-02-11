@@ -31,10 +31,8 @@ Route::group(['prefix' => 'cart'], function () {
     Route::delete('/{id}', 'ShoppingCartController@destroy')->name('cart.destroy');
 });
 
-
-Route::group(['prefix' => 'restaurant'], function () {
-    Route::get('/', 'RestaurantController@index')->name('restaurant.index');
-    Route::get('/{restaurant}', 'RestaurantController@show')->name('restaurant.show');
+Route::group(['prefix' => 'restaurant' , 'middleware' => ['verified']], function () {
+    Route::get('/dashboard', 'Restaurant\DashboardController@index')->name('restaurant.dashboard.index');
 });
 
 Route::group(['prefix' => 'checkout'], function () {
@@ -47,5 +45,5 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
